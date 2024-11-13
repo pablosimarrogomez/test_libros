@@ -1,0 +1,66 @@
+spring:
+  application:
+    name: test-app
+
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.data.elasticsearch.ElasticsearchDataAutoConfiguration
+
+  activemq:
+    broker-url: failover:(ssl://activemq.local-env.com:61617)
+    ssl:
+      key-store: classpath:ssl/activemq-local-env.ks
+      key-store-password: password
+      trust-store: classpath:ssl/activemq-local-env.ts
+      trust-store-password: password
+
+  kafka:
+    bootstrap-servers: kafka.local-env.com:9092
+    ssl:
+      protocol: "SSL"
+      trust-store-location: classpath:ssl/kafka-local-env.ts
+      trust-store-password: password1
+    properties:
+      security:
+        protocol: "SSL"
+
+aws:
+  credentials:
+    access-key: test
+    secret-key: test
+  config:
+    region: us-east-1
+    domain: local-aws.com
+  sqs:
+    bucket: sqs-bucket
+  ses:
+    source-email: no-reply@local-env.com
+
+opensearch:
+  uris: https://test-db.us-east-1.opensearch.local-aws.com
+  username: admin
+  password: myPassword123!
+
+amq:
+  queues:
+    test: test-amq-queue
+
+sqs:
+  queues:
+    test-01: test-sqs-queue-01.fifo
+    test-02: test-sqs-queue-02.fifo
+
+kafka:
+  retry:
+    max-attempts: 3
+    initial-interval: 5000
+    max-interval: 90000
+    multiplier: 2.0
+  tasks:
+    pool-size: 10
+    refresh-pool-size: 10
+
+google:
+  credentials:
+    file-path: classpath:google/my-first-test-app-dev.json
+  project:
+    id: indigo-altar-431110-j3
